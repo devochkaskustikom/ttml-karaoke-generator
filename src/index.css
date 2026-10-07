@@ -125,9 +125,15 @@ body {
 }
 
 .app-header__button:focus-visible,
-.app-header__select:focus-visible {
+.app-header__select:focus-visible,
+.app-header__select[data-focus-visible="true"] {
   outline: 2px solid #cc0f8d;
   outline-offset: 2px;
+  color: #cc0f8d;
+}
+
+.app-header__select[data-hovered="true"],
+.app-header__select[data-pressed="true"] {
   color: #cc0f8d;
 }
 

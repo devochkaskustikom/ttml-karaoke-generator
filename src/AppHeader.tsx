@@ -46,18 +46,20 @@ export function AppHeader() {
             </button>
             <HelpModal isOpen={helpOpen} onClose={() => setHelpOpen(false)} />
             <Dropdown>
-                <button type="button" className="app-header__select" aria-label={t[MSG.languageLabel]}>
+                <Dropdown.Trigger
+                    className="app-header__select"
+                    aria-label={t[MSG.languageLabel]}
+                >
                     <span className="app-header__lang">
                         {language}
                         <CaretIcon />
                     </span>
-                </button>
+                </Dropdown.Trigger>
                 <Dropdown.Popover placement="bottom end">
                     <Dropdown.Menu
                         selectionMode="single"
                         selectedKeys={new Set([language])}
-                        onSelectionChange={(keys) => {
-                            const key = [...keys][0];
+                        onAction={(key) => {
                             if (key === LANG.RU || key === LANG.EN) setLanguage(key);
                         }}
                     >
