@@ -80,7 +80,12 @@ legacy/            # оригинал (minified) ~2022
 
 GitHub Actions (`.github/workflows/deploy.yml`) собирает проект и публикует `dist` на **GitHub Pages**.
 
-После первого push на `main` включите Pages: **Settings → Pages → Source: GitHub Actions**.
+**Первый раз (обязательно):**  
+1. Откройте [Settings → Pages](https://github.com/devochkaskustikom/ttml-karaoke-generator/settings/pages)  
+2. **Source** → **GitHub Actions**  
+3. Перезапустите workflow: [Actions → Deploy GitHub Pages](https://github.com/devochkaskustikom/ttml-karaoke-generator/actions/workflows/deploy.yml) → *Re-run all jobs*
+
+Пока Source не переключён на Actions, job `build` проходит, а `deploy` падает.
 
 ## License
 
