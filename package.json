@@ -1,0 +1,29 @@
+{
+  "name": "ttml-karaoke-generator",
+  "private": true,
+  "version": "2.0.0",
+  "description": "overflow.name TTML Karaoke Generator — sync lyrics to audio and export Apple Music TTML (remake of the 2022 NCA workflow)",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host",
+    "build": "tsc -b && vite build",
+    "preview": "vite preview --host"
+  },
+  "dependencies": {
+    "@heroui/react": "^3.2.6",
+    "@heroui/styles": "^3.2.6",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0",
+    "wavesurfer.js": "^7.12.12"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.3.3",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@vitejs/plugin-react": "^6.1.2",
+    "tailwindcss": "^4.3.3",
+    "typescript": "^7.0.2",
+    "vite": "^8.3.3"
+  }
+}
