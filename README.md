@@ -4,91 +4,92 @@
 
 **Live:** [https://devochkaskustikom.github.io/ttml-karaoke-generator/](https://devochkaskustikom.github.io/ttml-karaoke-generator/)
 
-Браузерный инструмент от **[overflow.name](https://overflow.name)** для создания **Time Synced Lyrics (TTML)** в стиле караоке — для загрузки в Apple Music.
+A browser-based tool by **[overflow.name](https://overflow.name)** for creating karaoke-style **Time Synced Lyrics (TTML)** for upload to Apple Music.
 
-Загрузите MP3/WAV и текст песни, отмечайте строки пробелом в такт музыке и скачайте готовый `.ttml`.
+Upload an MP3/WAV file and your lyrics, mark each line in time with the music using the spacebar, and download the finished `.ttml` file.
 
-> Независимая переделка workflow оригинального TTML-генератора **НЦА (2022)**.  
-> Неофициальный open-source remake на React 19 + HeroUI v3 + Vite.
+> An independent reimplementation of the original **NCA (2022)** TTML Generator workflow.  
+> An unofficial open-source remake built with React 19 + HeroUI v3 + Vite.
 
 ---
 
 ## Features
 
-- Загрузка **MP3** или **WAV** (drag & drop или выбор файла)
-- Волновая форма трека (wavesurfer.js), scrub на шаге загрузки
-- Синхронизация строк: **Space** (зажать / отпустить), **Backspace** — отмена
-- Экспорт **TTML** с таймкодами `HH:mm:ss.SSS` (itunes / ttml namespaces)
-- Интерфейс **RU / EN**
-- Стек: **React 19**, **HeroUI v3**, **Vite**, **Tailwind CSS v4**
+- Upload **MP3** or **WAV** files (drag and drop or file selection)
+- Track waveform visualization (wavesurfer.js) with scrubbing during the upload step
+- Line synchronization: **Spacebar** (hold/release), **Backspace** to undo
+- **TTML** export with `HH:mm:ss.SSS` timestamps (iTunes / TTML namespaces)
+- **RU / EN** interface
+- Tech stack: **React 19**, **HeroUI v3**, **Vite**, **Tailwind CSS v4**
 
-## Quick start
+## Quick Start
 
 ```bash
 npm install
 npm run dev
 ```
 
-Сборка и локальный превью:
+Build and run a local preview:
 
 ```bash
 npm run build
 npm run preview
 ```
 
-Откройте [http://127.0.0.1:5173/ttml-karaoke-generator/](http://127.0.0.1:5173/ttml-karaoke-generator/) (dev; `base` под GitHub Pages).
+Open [http://127.0.0.1:5173/ttml-karaoke-generator/](http://127.0.0.1:5173/ttml-karaoke-generator/) (development server; `base` is configured for GitHub Pages).
 
-## How to use
+## How to Use
 
-1. Добавьте аудиофайл MP3/WAV.
-2. Укажите исполнителя и название трека (как в кабинете дистрибьютора / Apple Music).
-3. Вставьте текст песни — **одна строка = одна timed lyric line**.
-4. Нажмите «продолжить» или Play.
-5. На шаге записи:
-   - держите **пробел**, пока звучит строка;
-   - отпустите в конце строки;
-   - **Backspace** — откатить последнюю отметку.
-6. Скачайте TTML и прикрепите к треку в поле Synced Lyrics.
+1. Add an MP3/WAV audio file.
+2. Enter the artist and track title (as listed in your distributor's dashboard / Apple Music).
+3. Paste the lyrics - **one line = one timed lyric line**.
+4. Click **Continue** or **Play**.
+5. During the recording step:
+   - Hold the **spacebar** while the line is playing.
+   - Release it when the line ends.
+   - Press **Backspace** to undo the last timestamp.
+6. Download the TTML file and attach it to your track in the **Synced Lyrics** field.
 
-Подробные требования к тексту — в кнопке «Как это работает?» в шапке приложения.
+For detailed lyric formatting requirements, click **“How does it work?”** in the app header.
 
-## Tech stack
+## Tech Stack
 
-| Layer        | Choice                             |
-|--------------|------------------------------------|
-| UI           | React 19 + HeroUI v3               |
-| Styling      | Tailwind CSS v4 + `@heroui/styles` |
-| Bundler      | Vite 8                             |
-| Audio        | wavesurfer.js 7                    |
-| Language     | TypeScript                         |
+| Layer | Choice |
+|---|---|
+| UI | React 19 + HeroUI v3 |
+| Styling | Tailwind CSS v4 + `@heroui/styles` |
+| Bundler | Vite 8 |
+| Audio | wavesurfer.js 7 |
+| Language | TypeScript |
 
-Исходники оригинального CRA/MUI-бандла сохранены в [`legacy/`](./legacy) для справки.
+The original CRA/MUI bundle source is preserved in [`legacy/`](./legacy) for reference.
 
-## Project layout
+## Project Layout
 
-```
+```text
 src/
-  App.tsx          # шаги: загрузка → запись → результат
-  Player.tsx       # загрузка файла + waveform
-  ttml.ts          # сборка TTML
-  i18n.ts          # RU / EN строки
-  AppHeader.tsx    # overflow.name wordmark, язык, справка
-legacy/            # оригинал (minified) ~2022
+  App.tsx          # Steps: upload → recording → result
+  Player.tsx       # File upload + waveform
+  ttml.ts          # TTML generation
+  i18n.ts          # RU / EN strings
+  AppHeader.tsx    # overflow.name wordmark, language, help
+legacy/            # Original (minified), circa 2022
 ```
 
-## Deploy
+## Deployment
 
-GitHub Actions (`.github/workflows/deploy.yml`) собирает проект и публикует `dist` на **GitHub Pages**.
+GitHub Actions (`.github/workflows/deploy.yml`) builds the project and deploys `dist` to **GitHub Pages**.
 
-**Первый раз (обязательно):**  
-1. Откройте [Settings → Pages](https://github.com/devochkaskustikom/ttml-karaoke-generator/settings/pages)  
-2. **Source** → **GitHub Actions**  
-3. Перезапустите workflow: [Actions → Deploy GitHub Pages](https://github.com/devochkaskustikom/ttml-karaoke-generator/actions/workflows/deploy.yml) → *Re-run all jobs*
+**First-time setup (required):**
 
-Пока Source не переключён на Actions, job `build` проходит, а `deploy` падает.
+1. Open [Settings → Pages](https://github.com/devochkaskustikom/ttml-karaoke-generator/settings/pages).
+2. Under **Source**, select **GitHub Actions**.
+3. Rerun the workflow: [Actions → Deploy GitHub Pages](https://github.com/devochkaskustikom/ttml-karaoke-generator/actions/workflows/deploy.yml) → *Re-run all jobs*.
+
+Until the source is switched to GitHub Actions, the `build` job will succeed, but the `deploy` job will fail.
 
 ## License
 
 [MIT](./LICENSE) © 2026 overflow.name / TTML Karaoke Generator contributors.
 
-Продукт — **overflow.name**. Код основан на workflow генератора **НЦА (2022)**; оригинальный продукт и товарные знаки принадлежат своим владельцам. Этот репозиторий не является официальным релизом НЦА.
+The product is **overflow.name**. The code is based on the **NCA (2022)** generator workflow; the original product and trademarks belong to their respective owners. This repository is not an official NCA release.
